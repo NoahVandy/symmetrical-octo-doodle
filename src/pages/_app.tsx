@@ -5,14 +5,55 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
+import { GetServerSidePropsContext } from 'next';
+import { useState } from 'react';
+import { AppProps } from 'next/app';
+import {
+  getCookie,
+  setCookies
+} from 'cookies-next';
+import Head from 'next/head';
+import {
+  MantineProvider,
+  ColorScheme,
+  ColorSchemeProvider
+} from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 
-const MyApp: AppType = ({
+// @ts-ignore
+const MyApp: AppType = (props: AppProps & {
+  colorScheme: ColorScheme
+}, {
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: {
+    session,
+    ...pageProps
+  },
 }) => {
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(nextColorScheme);
+    setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+  };
+
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          theme={{ colorScheme }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          <NotificationsProvider>
+            <Component {...pageProps} />
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </SessionProvider>
   );
 };
@@ -48,3 +89,8 @@ export default withTRPC<AppRouter>({
    */
   ssr: false,
 })(MyApp);
+
+// @ts-ignore
+MyApp.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+});
