@@ -5,6 +5,10 @@ export const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.string().url(),
-  DISCORD_CLIENT_ID: z.string(),
-  DISCORD_CLIENT_SECRET: z.string(),
+  POSTGRES_USER: z.string(),
+  POSTGRES_PASSWORD: z.string(),
+  POSTGRES_DB: z.string(),
+  POSTGRES_PORT: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
 });
