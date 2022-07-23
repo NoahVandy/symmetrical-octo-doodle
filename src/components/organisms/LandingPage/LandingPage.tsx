@@ -11,7 +11,6 @@ export default function LandingPage() {
     <ScrollArea
       style={{
         height: '300vh',
-        width: '100vw',
       }}
     >
       <Hero />
@@ -20,7 +19,6 @@ export default function LandingPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '100vw',
           height: '100vh',
         }}
       >
@@ -35,7 +33,6 @@ export default function LandingPage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '100vw',
           height: '100vh',
         }}
       >

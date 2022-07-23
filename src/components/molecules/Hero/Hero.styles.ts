@@ -3,7 +3,6 @@ import { createStyles } from '@mantine/core';
 export const useStyles = createStyles((theme) => ({
   container: {
     height: '100vh',
-    width: '100vw',
   },
 
   inner: {
