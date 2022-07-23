@@ -21,7 +21,7 @@ export default function Welcome() {
           variant="gradient"
           component="span"
         >
-          Hack Midwest
+          PinDrive
         </Text>
       </Title>
       <Text
