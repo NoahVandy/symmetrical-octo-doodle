@@ -1,16 +1,12 @@
 import {
   Input,
-  Container,
   createStyles,
   MantineTheme,
   Text,
-  Group, Button,
+  Group,
 } from '@mantine/core';
-import { useRouter } from 'next/router';
-import { useCallback } from 'react';
-
 import { FileSearch } from "tabler-icons-react"
-import { signIn, useSession } from 'next-auth/react';
+import AuthButton from '../../../../../components/atoms/AuthButton/AuthButton';
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   containerGroup: {
@@ -25,13 +21,6 @@ const useStyles = createStyles((theme: MantineTheme) => ({
 }))
 
 export default function Header() {
-  const { status } = useSession()
-  const isAuthenticated = status === 'authenticated';
-  const {push: navigate} = useRouter();
-  const handleGoToDrive = useCallback(() => {
-    isAuthenticated ? navigate('/drive') : signIn('google');
-  }, [isAuthenticated, navigate, signIn]);
-
   const { classes } = useStyles()
   return (
     <nav>
@@ -43,9 +32,7 @@ export default function Header() {
         <Group className={classes.rightContent} position="right">
           <Text>About</Text>
           <Text>Contact</Text>
-          <Button radius="xl" onClick={handleGoToDrive}>
-            Go to Pin Drive
-          </Button>
+          <AuthButton />
         </Group>
       </Group>
     </nav>
