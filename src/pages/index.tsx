@@ -1,9 +1,6 @@
-import { Center } from '@mantine/core';
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Logo } from '../components/Logo/Logo';
-import Welcome from '../components/Welcome/Welcome';
-import ColorSchemeToggle from '../components/ColorSchemeToggle/ColorSchemeToggle';
+import LandingPage from '../components/organisms/LandingPage/LandingPage';
 import Layout from "./components/layout"
 
 const Home: NextPage = () => {
@@ -15,16 +12,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <>
-          <Welcome />
-          <Center>
-            <Logo width={250} />
-          </Center>
-          <ColorSchemeToggle />
-        </>
+        <LandingPage />
       </Layout>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
