@@ -3,6 +3,8 @@ import { createStyles } from '@mantine/core';
 export const useStyles = createStyles((theme) => ({
   container: {
     height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
   },
 
   inner: {
@@ -13,7 +15,6 @@ export const useStyles = createStyles((theme) => ({
   },
 
   content: {
-    maxWidth: 480,
     marginRight: theme.spacing.xl * 3,
 
     [theme.fn.smallerThan('md')]: {
