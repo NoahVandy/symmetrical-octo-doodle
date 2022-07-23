@@ -8,9 +8,9 @@ import {
 } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-
 import { FileSearch } from "tabler-icons-react"
 import { signIn, useSession } from 'next-auth/react';
+import ColorSchemeToggle from '../../../../../components/atoms/ColorSchemeToggle/ColorSchemeToggle';
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   containerGroup: {
@@ -41,6 +41,7 @@ export default function Header() {
           <Input placeholder={"search files."} icon={<FileSearch />} />
         )}
         <Group className={classes.rightContent} position="right">
+          <ColorSchemeToggle />
           <Text>About</Text>
           <Text>Contact</Text>
           <Button radius="xl" onClick={handleGoToDrive}>
@@ -49,5 +50,5 @@ export default function Header() {
         </Group>
       </Group>
     </nav>
-  )
+  );
 }
