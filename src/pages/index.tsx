@@ -1,7 +1,9 @@
-import type { NextPage } from "next"
-import Head from "next/head"
-import Welcome from "../components/Welcome/Welcome"
-import ColorSchemeToggle from "../components/ColorSchemeToggle/ColorSchemeToggle"
+import { Center } from '@mantine/core';
+import type { NextPage } from "next";
+import Head from "next/head";
+import { Logo } from '../components/Logo/Logo';
+import Welcome from '../components/Welcome/Welcome';
+import ColorSchemeToggle from '../components/ColorSchemeToggle/ColorSchemeToggle';
 import Layout from "./components/layout"
 
 const Home: NextPage = () => {
@@ -15,6 +17,9 @@ const Home: NextPage = () => {
       <Layout>
         <>
           <Welcome />
+          <Center>
+            <Logo width={250} />
+          </Center>
           <ColorSchemeToggle />
         </>
       </Layout>
