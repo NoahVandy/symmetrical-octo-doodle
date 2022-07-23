@@ -9,7 +9,7 @@ type Props = {
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   container: {
-    height: "100vh",
+    height: "100%",
   },
 }))
 
