@@ -4,35 +4,48 @@ import {
   createStyles,
   MantineTheme,
   Text,
-  Group,
-} from "@mantine/core"
+  Group, Button,
+} from '@mantine/core';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
 import { FileSearch } from "tabler-icons-react"
-import { useSession } from "next-auth/react"
+import { signIn, useSession } from 'next-auth/react';
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   containerGroup: {
     paddingTop: 15,
   },
+  logo: {
+    flex: 1,
+  },
+  rightContent: {
+    flex: 1,
+  }
 }))
 
 export default function Header() {
-  const auth = useSession()
+  const { status } = useSession()
+  const isAuthenticated = status === 'authenticated';
+  const {push: navigate} = useRouter();
+  const handleGoToDrive = useCallback(() => {
+    isAuthenticated ? navigate('/drive') : signIn('google');
+  }, [isAuthenticated, navigate, signIn]);
 
   const { classes } = useStyles()
   return (
     <nav>
       <Group className={classes.containerGroup} position={"apart"} px="lg">
-        <Text>Pin Drive</Text>
-        {auth.status != "authenticated" && (
-          <>
-            <Input placeholder={"search files."} icon={<FileSearch />} />
-          </>
+        <Text className={classes.logo}>Pin Drive</Text>
+        {status !== "authenticated" && (
+          <Input placeholder={"search files."} icon={<FileSearch />} />
         )}
-        <Group>
+        <Group className={classes.rightContent} position="right">
           <Text>About</Text>
           <Text>Contact</Text>
-          <Text>Go to Drive</Text>
+          <Button radius="xl" onClick={handleGoToDrive}>
+            Go to Pin Drive
+          </Button>
         </Group>
       </Group>
     </nav>
