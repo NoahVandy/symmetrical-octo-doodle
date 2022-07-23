@@ -23,13 +23,15 @@ import { NotificationsProvider } from '@mantine/notifications';
 // @ts-ignore
 const MyApp: AppType = (props: AppProps & {
   colorScheme: ColorScheme
-}, {
-  Component,
-  pageProps: {
-    session,
-    ...pageProps
-  },
 }) => {
+  const {
+    Component,
+    pageProps: {
+      session,
+      ...pageProps
+    }
+  } = props;
+
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
   const toggleColorScheme = (value?: ColorScheme) => {
