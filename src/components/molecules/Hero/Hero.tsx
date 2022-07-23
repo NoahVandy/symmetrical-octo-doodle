@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Container,
   Title,
-  Button,
   Group,
   Text,
   List,
   ThemeIcon,
 } from '@mantine/core';
 import { Check } from 'tabler-icons-react';
+import AuthButton from '../../atoms/AuthButton/AuthButton';
 import { useStyles } from './Hero.styles';
 
 export default function Hero() {
@@ -51,13 +51,7 @@ export default function Hero() {
             </List>
 
             <Group mt={30}>
-              <Button
-                radius="xl"
-                size="md"
-                className={classes.control}
-              >
-                Go to drive
-              </Button>
+              <AuthButton />
             </Group>
           </div>
           <Text>
