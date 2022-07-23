@@ -1,3 +1,4 @@
+import { signIn } from 'next-auth/react';
 import React from 'react';
 import { useForm, useToggle, upperFirst } from '@mantine/hooks';
 import {
@@ -36,7 +37,7 @@ export function AuthenticationForm(props: PaperProps<'div'>) {
         Sign in to PinDrive:
       </Text>
       <Group grow mb="md" mt="md">
-        <GoogleButton radius="xl">Google</GoogleButton>
+        <GoogleButton onClick={() => signIn('google')} radius="xl">Google</GoogleButton>
       </Group>
     </Paper>
   );
