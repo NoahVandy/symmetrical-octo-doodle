@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, ButtonProps, Group } from '@mantine/core';
-import { MarkGithubIcon } from '@primer/octicons-react';
 import { GoogleIcon } from './GoogleIcon';
 import { DiscordIcon } from './DiscordIcon';
 import { FacebookIcon } from './FacebookIcon';
@@ -49,22 +48,6 @@ export function TwitterButton(props: ButtonProps<'a'>) {
   return <Button component="a" leftIcon={<TwitterIcon />} variant="default" {...props} />;
 }
 
-export function GithubButton(props: ButtonProps<'button'>) {
-  return (
-    <Button
-      {...props}
-      leftIcon={<MarkGithubIcon />}
-      sx={(theme) => ({
-        backgroundColor: theme.colors.dark[theme.colorScheme === 'dark' ? 9 : 6],
-        color: '#fff',
-        '&:hover': {
-          backgroundColor: theme.colors.dark[theme.colorScheme === 'dark' ? 9 : 6],
-        },
-      })}
-    />
-  );
-}
-
 export function SocialButtons() {
   return (
     <Group position="center" sx={{ padding: 15 }}>
@@ -73,7 +56,6 @@ export function SocialButtons() {
         Follow on Twitter
       </TwitterButton>
       <FacebookButton>Sign in with Facebook</FacebookButton>
-      <GithubButton>Login with GitHub</GithubButton>
       <DiscordButton>Join Discord community</DiscordButton>
     </Group>
   );
