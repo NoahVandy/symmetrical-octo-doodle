@@ -16,6 +16,7 @@ import File from "../../components/molecules/FileView"
 const files: FileType[] = [
   {
     id: "1",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -32,6 +33,7 @@ const files: FileType[] = [
   },
   {
     id: "2",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -48,6 +50,7 @@ const files: FileType[] = [
   },
   {
     id: "3",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -64,6 +67,7 @@ const files: FileType[] = [
   },
   {
     id: "4",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -80,6 +84,7 @@ const files: FileType[] = [
   },
   {
     id: "5",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -96,6 +101,7 @@ const files: FileType[] = [
   },
   {
     id: "6",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -112,6 +118,7 @@ const files: FileType[] = [
   },
   {
     id: "7",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -128,6 +135,7 @@ const files: FileType[] = [
   },
   {
     id: "8",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -144,6 +152,7 @@ const files: FileType[] = [
   },
   {
     id: "9",
+    cid: "1",
     userId: "1",
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -192,6 +201,7 @@ export default function Dashboard() {
   const folders: FolderType[] = [
     {
       id: "1",
+      cid: "1",
       name: "hentai",
       userId: "1",
       createdAt: new Date(),
@@ -200,6 +210,7 @@ export default function Dashboard() {
     },
     {
       id: "2",
+      cid: "1",
       name: "hentai",
       userId: "1",
       createdAt: new Date(),
@@ -208,6 +219,7 @@ export default function Dashboard() {
     },
     {
       id: "3",
+      cid: "1",
       name: "hentai",
       userId: "1",
       createdAt: new Date(),
@@ -216,6 +228,7 @@ export default function Dashboard() {
     },
     {
       id: "4",
+      cid: "1",
       name: "hentai",
       userId: "1",
       createdAt: new Date(),
@@ -224,6 +237,7 @@ export default function Dashboard() {
     },
     {
       id: "5",
+      cid: "1",
       name: "hentai",
       userId: "1",
       createdAt: new Date(),
@@ -232,6 +246,7 @@ export default function Dashboard() {
     },
     {
       id: "6",
+      cid: "1",
       name: "hentai",
       userId: "1",
       createdAt: new Date(),

@@ -63,7 +63,7 @@ model VerificationToken {
 
 model Folder {
   id             String   @id @default(cuid())
-  cid            String
+  name           String
   user           User     @relation(fields: [userId], references: [id])
   userId         String
   parentFolder   Folder?  @relation("FolderParentFolder", fields: [parentFolderId], references: [id])
@@ -72,13 +72,12 @@ model Folder {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now())
 
-  @@unique([userId, cid])
   @@unique([userId, id])
 }
 
 model File {
   id          String   @id @default(cuid())
-  cid         String
+  cid         String   @unique
   user        User     @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime @default(now())
