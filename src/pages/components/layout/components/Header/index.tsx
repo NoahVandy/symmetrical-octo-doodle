@@ -1,6 +1,5 @@
 import {
   Input,
-  Container,
   createStyles,
   MantineTheme,
   Text,
@@ -10,8 +9,9 @@ import {
 import { useRouter } from "next/router"
 import { useCallback } from "react"
 
-import { FileSearch } from "tabler-icons-react"
 import { signIn, useSession } from "next-auth/react"
+import { FileSearch } from "tabler-icons-react"
+import AuthButton from "../../../../../components/atoms/AuthButton/AuthButton"
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   containerGroup: {
@@ -44,15 +44,7 @@ export default function Header() {
         <Group className={classes.rightContent} position="right">
           <Text>About</Text>
           <Text>Contact</Text>
-          {isAuthenticated ? (
-            <Button radius="xl" onClick={handleGoToDrive}>
-              Go to Pin Drive
-            </Button>
-          ) : (
-            <Button radius="xl" onClick={handleGoToDrive}>
-              Sign up
-            </Button>
-          )}
+          <AuthButton />
         </Group>
       </Group>
     </nav>
