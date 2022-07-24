@@ -64,7 +64,7 @@ export const uploadRouter = createRouter()
               )
               const response = await submarine.uploadFileOrFolder(
                 filePath,
-                file.name,
+                file.name || 'No name',
                 {},
                 1
               );

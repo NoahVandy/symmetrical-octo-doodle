@@ -19,7 +19,6 @@ export const submarineRouter = createRouter()
       }).folders({
         select: {
           id: true,
-          cid: true,
           createdAt: true,
           updatedAt: true,
         },
@@ -28,36 +27,30 @@ export const submarineRouter = createRouter()
       })
     },
   })
-  // ONLY RETURNS PAGES OF 10 FILES each
-  .query("folderFiles", {
+  .query("files", {
     input: z
       .object({
-        folderId: z.string(),
         page: z.number(),
+        perPage: z.number(),
       }),
     async resolve({ input, ctx: { session, prisma } }) {
       if (!session || !session.user || !session.user.id) {
         throw new Error("Not logged in");
       }
       const {user: { id: userId} } = session;
-      const folder = await prisma.folder.findUniqueOrThrow({
-        where: {
-          userId_id: {
-            userId,
-            id: input.folderId,
-          }
-        },
+      return prisma.user.findUniqueOrThrow({
+        where: { id: userId },
+      }).files({
         select: {
           id: true,
+          createdAt: true,
+          updatedAt: true,
           cid: true,
-        }
-      });
-      const foundContent = await submarine.getSubmarinedContentByCid(folder.cid);
-      const pinataFolder = foundContent.items[0];
-      const pinataFolderId = pinataFolder.id;
-      const content = await submarine.listFolderContent(
-        pinataFolderId, `${(input.page - 1) * 10}`,
-      );
-      return content.childContent;
-    },
-  });
+        },
+        skip: (input.page - 1) * input.perPage,
+        take: input.perPage,
+      })
+    }
+  })
+
+  // ONLY RETURNS PAGES OF 10 FILES each
