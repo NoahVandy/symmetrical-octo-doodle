@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 import {
   Input,
   createStyles,
@@ -23,6 +25,11 @@ const useStyles = createStyles((theme: MantineTheme) => ({
   rightContent: {
     flex: 1,
   },
+  avatar: {
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  }
 }))
 
 export default function Header() {
@@ -31,6 +38,11 @@ export default function Header() {
 
   const { classes } = useStyles()
   const { status } = useSession();
+  const router = useRouter();
+  const onAvatarClick = useCallback(() => {
+    router.push('/dashboard');
+  }, [router]);
+
   return (
     <nav>
       <Group className={classes.containerGroup} position={"apart"} px="lg">
@@ -41,7 +53,15 @@ export default function Header() {
         <Group className={classes.rightContent} position="right">
           <Text>About</Text>
           <Text>Contact</Text>
-          <AuthButton />
+          {
+            status === "authenticated"
+              ? (<Avatar
+                  className={classes.avatar}
+                  onClick={onAvatarClick}
+                  radius="xl"
+                />)
+              : (<AuthButton />)
+          }
         </Group>
       </Group>
     </nav>
