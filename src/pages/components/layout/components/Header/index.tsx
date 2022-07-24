@@ -28,10 +28,6 @@ const useStyles = createStyles((theme: MantineTheme) => ({
 export default function Header() {
   const { status } = useSession()
   const isAuthenticated = status === "authenticated"
-  const { push: navigate } = useRouter()
-  const handleGoToDrive = useCallback(() => {
-    isAuthenticated ? navigate("/drive") : signIn("google")
-  }, [isAuthenticated, navigate, signIn])
 
   const { classes } = useStyles()
   return (
