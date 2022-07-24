@@ -3,9 +3,9 @@ import {
   createStyles,
   MantineTheme,
   Text,
-  Group,
+  Group, 
   Button,
-} from "@mantine/core"
+} from '@mantine/core';
 import { useRouter } from "next/router"
 import { useCallback } from "react"
 
@@ -30,6 +30,7 @@ export default function Header() {
   const isAuthenticated = status === "authenticated"
 
   const { classes } = useStyles()
+  const { status } = useSession();
   return (
     <nav>
       <Group className={classes.containerGroup} position={"apart"} px="lg">
