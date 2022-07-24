@@ -4,10 +4,14 @@ import {
   MantineTheme,
   Text,
   Group,
-} from '@mantine/core';
-import { useSession } from 'next-auth/react';
+  Button,
+} from "@mantine/core"
+import { useRouter } from "next/router"
+import { useCallback } from "react"
+
+import { signIn, useSession } from "next-auth/react"
 import { FileSearch } from "tabler-icons-react"
-import AuthButton from '../../../../../components/atoms/AuthButton/AuthButton';
+import AuthButton from "../../../../../components/atoms/AuthButton/AuthButton"
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   containerGroup: {
@@ -18,17 +22,23 @@ const useStyles = createStyles((theme: MantineTheme) => ({
   },
   rightContent: {
     flex: 1,
-  }
+  },
 }))
 
 export default function Header() {
-  const { classes } = useStyles()
   const { status } = useSession()
+  const isAuthenticated = status === "authenticated"
+  const { push: navigate } = useRouter()
+  const handleGoToDrive = useCallback(() => {
+    isAuthenticated ? navigate("/drive") : signIn("google")
+  }, [isAuthenticated, navigate, signIn])
+
+  const { classes } = useStyles()
   return (
     <nav>
       <Group className={classes.containerGroup} position={"apart"} px="lg">
         <Text className={classes.logo}>Pin Drive</Text>
-        {status !== "authenticated" && (
+        {isAuthenticated && (
           <Input placeholder={"search files."} icon={<FileSearch />} />
         )}
         <Group className={classes.rightContent} position="right">
