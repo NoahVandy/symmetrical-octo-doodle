@@ -5,6 +5,7 @@ import {
   Text,
   Group,
 } from '@mantine/core';
+import { useSession } from 'next-auth/react';
 import { FileSearch } from "tabler-icons-react"
 import AuthButton from '../../../../../components/atoms/AuthButton/AuthButton';
 
@@ -22,6 +23,7 @@ const useStyles = createStyles((theme: MantineTheme) => ({
 
 export default function Header() {
   const { classes } = useStyles()
+  const { status } = useSession();
   return (
     <nav>
       <Group className={classes.containerGroup} position={"apart"} px="lg">
