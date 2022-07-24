@@ -2,7 +2,7 @@ import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles(theme => ({
   scrollArea: {
-    height: 'calc(300vh - 70px)',
+    height: '300vh',
     width: '100vw',
   },
   text: {
@@ -19,7 +19,7 @@ export const useStyles = createStyles(theme => ({
     width: '100vw',
   },
   firstPage: {
-    height: '100vh',
+    height: 'calc(100vh - 70px)',
     width: '100vw',
     display: 'flex',
     alignItems: 'center',

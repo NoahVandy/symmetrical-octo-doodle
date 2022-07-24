@@ -1,19 +1,38 @@
+import React, {
+  useState,
+  useCallback
+} from 'react';
 import {
   ScrollArea,
-  Text
+  Text,
 } from '@mantine/core';
 import Hero from '../../molecules/Hero/Hero';
 import { useStyles } from './LandingPage.styles';
 import MaangBanner from '../../atoms/MaangBanner/MaangBanner';
 import PinataMiata from '../../atoms/PinataMiata/PinataMiata';
 
+export type ScrollTop = number;
+
 // todo before push rm header status
 export default function LandingPage() {
   const { classes } = useStyles();
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const getScrollTop = useCallback(async () => {
+    const scrollTop = await window && window.scrollY;
+    setScrollTop(scrollTop);
+  }, []);
 
   return (
-    <ScrollArea className={classes.scrollArea}>
-      <PinataMiata />
+    <>
+    <ScrollArea
+      style={{
+        height: '300vh',
+        width: '100vw',
+      }}
+      onWheel={getScrollTop}
+    >
+      <PinataMiata scrollTop={scrollTop} />
       <div className={classes.firstPage}>
         <Hero />
       </div>
@@ -39,5 +58,6 @@ export default function LandingPage() {
         </div>
       </div>
     </ScrollArea>
+    </>
   );
 }

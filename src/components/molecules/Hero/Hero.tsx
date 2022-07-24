@@ -14,48 +14,46 @@ import { useStyles } from './Hero.styles';
 export default function Hero() {
   const { classes } = useStyles();
   return (
-    <div>
-      <div className={classes.descriptionContainer}>
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              A <span className={classes.highlight}>modern</span> React <br /> components library
-            </Title>
-            <Text color="dimmed" mt="md">
-              Build fully functional accessible web applications faster than ever – Mantine includes
-              more than 120 customizable components and hooks to cover you in any situation
-            </Text>
+    <div className={classes.heroContainer}>
+    <div className={classes.inner}>
+      <div className={classes.content}>
+        <Title className={classes.title}>
+          You see the rainbow pinata driving the mazda miata and you know you gotta try PinDrova.
+        </Title>
+        <Text color="dimmed" mt="md">
+          Build fully functional accessible web applications faster than ever – Mantine includes
+          more than 120 customizable components and hooks to cover you in any situation
+        </Text>
 
-            <List
-              mt={30}
-              spacing="sm"
-              size="sm"
-              icon={
-                <ThemeIcon size={20} radius="xl">
-                  <Check size={12} />
-                </ThemeIcon>
-              }
-            >
-              <List.Item>
-                <b>TypeScript based</b> – build type safe applications, all components and hooks
-                export types
-              </List.Item>
-              <List.Item>
-                <b>Free and open source</b> – all packages have MIT license, you can use Mantine in
-                any project
-              </List.Item>
-              <List.Item>
-                <b>No annoying focus ring</b> – focus ring will appear only when user navigates with
-                keyboard
-              </List.Item>
-            </List>
+        <List
+          mt={30}
+          spacing="sm"
+          size="sm"
+          icon={
+            <ThemeIcon size={20} radius="xl">
+              <Check size={12} />
+            </ThemeIcon>
+          }
+        >
+          <List.Item>
+            <b>TypeScript based</b> – build type safe applications, all components and hooks
+            export types
+          </List.Item>
+          <List.Item>
+            <b>Free and open source</b> – all packages have MIT license, you can use Mantine in
+            any project
+          </List.Item>
+          <List.Item>
+            <b>No annoying focus ring</b> – focus ring will appear only when user navigates with
+            keyboard
+          </List.Item>
+        </List>
 
-            <Group mt={30}>
-              <AuthButton />
-            </Group>
-          </div>
-        </div>
+        <Group mt={30}>
+          <AuthButton />
+        </Group>
       </div>
+    </div>
     </div>
   );
 }

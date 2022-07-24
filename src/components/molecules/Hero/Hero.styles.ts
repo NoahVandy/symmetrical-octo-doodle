@@ -1,20 +1,18 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-  descriptionContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  heroContainer:{
+    zIndex: -1,
+    width: '100vw',
+    height: 'calc(100vh - 70px)',
+    overflow: 'hidden',
   },
 
  inner: {
-    display: 'flex',
-    justifyContent: 'center !important',
-    width: '100vw',
-    height: 'max-content',
-    paddingTop: theme.spacing.xl * 4,
-    paddingBottom: theme.spacing.xl * 4,
-  },
+   display: 'flex',
+   justifyContent: 'center !important',
+   alignItems: 'center !important',
+ },
 
   content: {
     marginRight: theme.spacing.xl * 3,
