@@ -15,7 +15,7 @@ export default function Hero() {
   const { classes } = useStyles();
   return (
     <div>
-      <Container>
+      <div className={classes.descriptionContainer}>
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
@@ -54,11 +54,8 @@ export default function Hero() {
               <AuthButton />
             </Group>
           </div>
-          <Text>
-            Image
-          </Text>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

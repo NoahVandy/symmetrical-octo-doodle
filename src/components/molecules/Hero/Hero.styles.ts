@@ -1,9 +1,17 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-  inner: {
+  descriptionContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+ inner: {
+    display: 'flex',
+    justifyContent: 'center !important',
+    width: '100vw',
+    height: 'max-content',
     paddingTop: theme.spacing.xl * 4,
     paddingBottom: theme.spacing.xl * 4,
   },

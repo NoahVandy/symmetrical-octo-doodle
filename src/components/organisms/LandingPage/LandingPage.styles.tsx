@@ -2,7 +2,8 @@ import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles(theme => ({
   scrollArea: {
-    height: '300vh',
+    height: 'calc(300vh - 70px)',
+    width: '100vw',
   },
   text: {
     fontSize: '2rem',
@@ -13,8 +14,13 @@ export const useStyles = createStyles(theme => ({
     right: '10em',
     marginBottom: '25em'
   },
+  pinataMiataContainer: {
+    position: 'absolute',
+    width: '100vw',
+  },
   firstPage: {
     height: '100vh',
+    width: '100vw',
     display: 'flex',
     alignItems: 'center',
   },

@@ -4,33 +4,16 @@ import {
 } from '@mantine/core';
 import Hero from '../../molecules/Hero/Hero';
 import { useStyles } from './LandingPage.styles';
-import Circle from '../../atoms/Circle/Circle';
 import MaangBanner from '../../atoms/MaangBanner/MaangBanner';
-
-const bannersArray = [
-  {},
-  {},
-  {},
-  {},
-];
+import PinataMiata from '../../atoms/PinataMiata/PinataMiata';
 
 // todo before push rm header status
 export default function LandingPage() {
   const { classes } = useStyles();
-  const banners = bannersArray.map((banner) => {
-    return (
-      <div
-        style={{
-          backgroundColor: 'red',
-          width: 200,
-          height: 100,
-        }}
-      />
-    );
-  });
 
   return (
     <ScrollArea className={classes.scrollArea}>
+      <PinataMiata />
       <div className={classes.firstPage}>
         <Hero />
       </div>
@@ -39,10 +22,7 @@ export default function LandingPage() {
           Used By Millions Of Concurrent Users
         </Text>
         <div className={classes.circle}>
-          <Circle
-            color="red"
-            radius={80}
-          />
+
         </div>
       </div>
       <div className={classes.thirdPage}>

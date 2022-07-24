@@ -1,7 +1,7 @@
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 
-import { Container, createStyles, MantineTheme } from "@mantine/core"
+import { createStyles, MantineTheme } from "@mantine/core"
 
 type Props = {
   children: JSX.Element
@@ -9,7 +9,8 @@ type Props = {
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   container: {
-    height: "100%",
+    height: "max-content",
+    width: "100vw",
   },
 }))
 
@@ -19,7 +20,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Header />
-      <Container className={classes.container}>{children}</Container>
+      <div className={classes.container}>{children}</div>
       <Footer />
     </>
   )
