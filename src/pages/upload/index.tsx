@@ -47,13 +47,14 @@ export default function UploadPage() {
     {
       append: appendFilesToUpload,
       remove: removeFileToUpload,
+      setState: setFilesToUpload,
     }] = useListState<File>([]);
 
   const { mutate, isLoading } = trpc.useMutation(
     'upload.upload',
     {
       onSuccess: (data) => {
-        console.log(data);
+        setFilesToUpload([]);
       },
       onError: (error) => {
         console.error(error);
@@ -62,7 +63,6 @@ export default function UploadPage() {
   )
 
   return (
-    <Layout>
       <>
         <Dropzone
           my={200}
@@ -117,6 +117,5 @@ export default function UploadPage() {
           </Button>
         </Center>
       </>
-    </Layout>
   )
 }
