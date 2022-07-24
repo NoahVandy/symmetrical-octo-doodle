@@ -10,6 +10,10 @@ type Props = {
 const useStyles = createStyles((theme: MantineTheme) => ({
   container: {
     height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
 }))
 
@@ -19,7 +23,9 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Header />
-      <Container className={classes.container}>{children}</Container>
+      <Container fluid className={classes.container}>
+        {children}
+      </Container>
       <Footer />
     </>
   )
