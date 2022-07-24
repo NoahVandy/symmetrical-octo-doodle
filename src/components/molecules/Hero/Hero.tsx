@@ -14,7 +14,7 @@ import { useStyles } from './Hero.styles';
 export default function Hero() {
   const { classes } = useStyles();
   return (
-    <div className={classes.container}>
+    <div>
       <Container>
         <div className={classes.inner}>
           <div className={classes.content}>

@@ -5,37 +5,38 @@ import {
 import Hero from '../../molecules/Hero/Hero';
 import { useStyles } from './LandingPage.styles';
 
+const bannersArray = [
+  {},
+  {},
+  {},
+  {},
+];
+
+// todo before push rm header status
 export default function LandingPage() {
   const { classes } = useStyles();
-  return (
-    <ScrollArea
-      style={{
-        height: '300vh',
-      }}
-    >
-      <Hero />
+  const banners = bannersArray.map((banner) => {
+    return (
       <div
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
+          backgroundColor: 'red',
+          width: 200,
+          height: 100,
         }}
-      >
+      />
+    );
+  });
+  return (
+    <ScrollArea className={classes.scrollArea}>
+      <div className={classes.firstPage}>
+        <Hero />
+      </div>
+      <div className={classes.secondPage}>
         <Text className={classes.text}>
           Used By Millions Of Concurrent Users
         </Text>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          gap: '3rem',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
-        }}
-      >
+      <div className={classes.thirdPage}>
         <Text className={classes.text}>
           Endorsed by tech leaders around the globe
         </Text>
@@ -45,34 +46,7 @@ export default function LandingPage() {
             gap: 15
           }}
         >
-          <div
-            style={{
-              backgroundColor: 'red',
-              width: 200,
-              height: 100,
-            }}
-          />
-          <div
-            style={{
-              backgroundColor: 'red',
-              width: 200,
-              height: 100,
-            }}
-          />
-          <div
-            style={{
-              backgroundColor: 'red',
-              width: 200,
-              height: 100,
-            }}
-          />
-          <div
-            style={{
-              backgroundColor: 'red',
-              width: 200,
-              height: 100,
-            }}
-          />
+          {banners}
         </div>
       </div>
     </ScrollArea>
