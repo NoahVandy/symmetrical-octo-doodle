@@ -14,6 +14,9 @@ import { useCallback } from "react"
 import { signIn, useSession } from "next-auth/react"
 import { FileSearch } from "tabler-icons-react"
 import AuthButton from "../../../../../components/atoms/AuthButton/AuthButton"
+import ColorSchemeToggle
+  from '../../../../../components/atoms/ColorSchemeToggle/ColorSchemeToggle';
+
 
 const useStyles = createStyles((theme: MantineTheme) => ({
   containerGroup: {
@@ -51,6 +54,7 @@ export default function Header() {
           <Input placeholder={"search files."} icon={<FileSearch />} />
         )}
         <Group className={classes.rightContent} position="right">
+          <ColorSchemeToggle />
           <Text>About</Text>
           <Text>Contact</Text>
           {
@@ -65,5 +69,5 @@ export default function Header() {
         </Group>
       </Group>
     </nav>
-  )
+  );
 }
