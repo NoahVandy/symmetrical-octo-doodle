@@ -10,7 +10,7 @@ export const submarine =
   global.submarine ||
   new Submarine(
     env.PINATA_API_KEY,
-    'gateway.pinata.cloud',
+    env.PINATA_GATEWAY_DOMAIN,
   );
 
 if (env.NODE_ENV !== "production") {

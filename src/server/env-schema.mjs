@@ -14,5 +14,6 @@ export const envSchema = z.object({
   PINATA_API_KEY: z.string(),
   PINATA_API_SECRET: z.string(),
   PINATA_JWT: z.string(),
+  PINATA_GATEWAY_DOMAIN: z.string(),
 });
 
