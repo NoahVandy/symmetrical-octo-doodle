@@ -11,7 +11,6 @@ import Folder from "../../components/Folder"
 import { Folders as FoldersIcon } from "tabler-icons-react"
 
 import { Folder as FolderType, File as FileType } from "@prisma/client"
-import FilesView from "../../components/molecules/FilesView/FilesView"
 import File from "../../components/molecules/FileView"
 
 const files: FileType[] = [
