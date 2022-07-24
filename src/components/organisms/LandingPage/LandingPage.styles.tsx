@@ -7,6 +7,12 @@ export const useStyles = createStyles(theme => ({
   text: {
     fontSize: '2rem',
   },
+  circle: {
+    zIndex: -1,
+    position: 'absolute',
+    right: '10em',
+    marginBottom: '25em'
+  },
   firstPage: {
     height: '100vh',
     display: 'flex',

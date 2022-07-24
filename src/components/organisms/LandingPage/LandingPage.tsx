@@ -4,6 +4,8 @@ import {
 } from '@mantine/core';
 import Hero from '../../molecules/Hero/Hero';
 import { useStyles } from './LandingPage.styles';
+import Circle from '../../atoms/Circle/Circle';
+import MaangBanner from '../../atoms/MaangBanner/MaangBanner';
 
 const bannersArray = [
   {},
@@ -26,6 +28,7 @@ export default function LandingPage() {
       />
     );
   });
+
   return (
     <ScrollArea className={classes.scrollArea}>
       <div className={classes.firstPage}>
@@ -35,6 +38,12 @@ export default function LandingPage() {
         <Text className={classes.text}>
           Used By Millions Of Concurrent Users
         </Text>
+        <div className={classes.circle}>
+          <Circle
+            color="red"
+            radius={80}
+          />
+        </div>
       </div>
       <div className={classes.thirdPage}>
         <Text className={classes.text}>
@@ -46,7 +55,7 @@ export default function LandingPage() {
             gap: 15
           }}
         >
-          {banners}
+          <MaangBanner />
         </div>
       </div>
     </ScrollArea>

@@ -1,24 +1,23 @@
 export interface ICircle {
-  width: number;
-  height: number;
   color: string;
   radius: number;
+  strokeWidth?: number;
 }
 
 export default function Circle({
-  width,
-  height,
   color,
-  radius
+  radius,
 }: ICircle) {
+  const view = radius * 2;
+
   return (
     <svg
-      height={height}
-      width={width}
+      height={view}
+      width={view}
     >
       <circle
-        cx={width / 2}
-        cy={height / 2}
+        cx={radius}
+        cy={radius}
         r={radius}
         stroke="black"
         strokeWidth="0"
