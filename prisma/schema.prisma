@@ -64,6 +64,7 @@ model VerificationToken {
 model Folder {
   id             String   @id @default(cuid())
   cid            String
+  name           String
   user           User     @relation(fields: [userId], references: [id])
   userId         String
   parentFolder   Folder?  @relation("FolderParentFolder", fields: [parentFolderId], references: [id])

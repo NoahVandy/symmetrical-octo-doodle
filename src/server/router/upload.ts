@@ -1,6 +1,14 @@
+import axios from 'axios';
+import { createReadStream } from 'fs';
 import { writeFile } from 'fs/promises';
+import { Submarine } from 'pinata-submarine';
 import { z } from 'zod';
+import { env } from '../env';
+import {
+  submarine
+} from '../integrations/pinata/submarine';
 import { createRouter } from './context';
+import FormData from 'form-data';
 
 function readBase64File(inputBase64: string, name: string): File {
   const [, base64] = inputBase64.split(',');
@@ -18,25 +26,88 @@ export const fileUploadSchema = z.object({
     base64: z.string(),
   })),
 })
+
+export type SubmarineUploadResponse = {
+  id: string;
+  createdAt: string;
+  cid: string;
+  name: string;
+  originalname: string;
+  size: number;
+  metadata: any;
+  type: string;
+  pinToIPFS: boolean;
+  uri: string;
+  isDuplicate: boolean;
+}
+
+export type SubmarineBatchUploadResponse = {
+  status: number;
+  items: SubmarineUploadResponse[];
+}
+
 export const uploadRouter = createRouter()
   .mutation("upload", {
     input: fileUploadSchema,
     async resolve({ input, ctx }) {
       // Save the files to the public folder
-      await Promise.all(
+      const prismarineResponses = await Promise.all(
         input.files.map(
-          (file: z.infer<typeof fileUploadSchema>['files'][number]) => {
-            writeFile(
-              `public/${file.name}`,
+          async (file: z.infer<typeof fileUploadSchema>['files'][number]) => {
+            const filePath = `public/temp/${file.name}`;
+            await writeFile(
+              filePath,
               file.base64,
               'base64'
+            )
+            const response = await submarine.uploadFileOrFolder(
+              filePath,
+              file.name,
+              {},
+              1
             );
+            return response as SubmarineBatchUploadResponse;
           }
         )
       )
 
+      // Sync responses with prisma
+      const prismaResponses = await Promise.all(
+        prismarineResponses.map(
+          async (response) => {
+            const { items: [item] } = response;
+            if (item) {
+              const { id: pinataId, cid, name, originalname, size, metadata, type, pinToIPFS, uri, isDuplicate } = item;
+              const { session } = ctx;
+              if (!session || !session.user || !session.user.id) {
+                throw new Error('User not logged in');
+              }
+              const { user: { id: userId } } = session;
+              return ctx.prisma.file.create({
+                data: {
+                  pinataId,
+                  mimeType: '',
+                  cid,
+                  name: originalname,
+                  size: parseInt(size.toString()),
+                  metaData: metadata,
+                  pinToIpfs: pinToIPFS,
+                  isDuplicate,
+                  user: {
+                    connect: {
+                      id: userId,
+                    }
+                  },
+                }
+              });
+            }
+            return null;
+          }
+        )
+      );
       return {
         status: "success",
+        data: prismaResponses,
       }
     }
   });

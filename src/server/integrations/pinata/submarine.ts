@@ -3,16 +3,16 @@ import { env } from "../../env";
 import { Submarine } from "pinata-submarine";
 
 declare global {
-  var submarine: Submarine | undefined;
+  var submarineClient: Submarine | undefined;
 }
 
 export const submarine =
-  global.submarine ||
+  global.submarineClient ||
   new Submarine(
-    env.PINATA_API_KEY,
+    env.SUBMARINE_API_KEY,
     env.PINATA_GATEWAY_DOMAIN,
   );
 
 if (env.NODE_ENV !== "production") {
-  global.submarine = submarine;
+  global.submarineClient = submarine;
 }

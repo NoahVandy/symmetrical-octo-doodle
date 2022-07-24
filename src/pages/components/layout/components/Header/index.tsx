@@ -5,11 +5,9 @@ import {
   createStyles,
   MantineTheme,
   Text,
-  Group, 
-  Button,
+  Group,
+  Button, Avatar,
 } from '@mantine/core';
-import { useRouter } from "next/router"
-import { useCallback } from "react"
 
 import { signIn, useSession } from "next-auth/react"
 import { FileSearch } from "tabler-icons-react"
@@ -33,11 +31,10 @@ const useStyles = createStyles((theme: MantineTheme) => ({
 }))
 
 export default function Header() {
-  const { status } = useSession()
+  const { status } = useSession();
   const isAuthenticated = status === "authenticated"
 
   const { classes } = useStyles()
-  const { status } = useSession();
   const router = useRouter();
   const onAvatarClick = useCallback(() => {
     router.push('/dashboard');
